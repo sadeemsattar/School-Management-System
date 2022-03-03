@@ -11,7 +11,7 @@ React JS, React Router, Axios, Node JS, Express JS and MySQL.
 The Student Registration Management System allows School Administration to register students in their school. It is a CRUD Application that allows admin to add students, update students, view students and delete students. The admin is required to Login the system in order to register the student. 
 The admin session is stored and cookie is created.The admin password is hashed using Bcrypt to ensure the security and prevent illegal access in the system.
 
-#Main Feature
+# Main Feature
 One main feature of this project is to generate student fee challan and print it.
 
 
