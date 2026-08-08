@@ -1,4 +1,3 @@
-const { query } = require("express");
 const express = require("express");
 const router = express.Router();
 const db = require("../config");
@@ -36,51 +35,31 @@ router.put(`/updateStudent`, async (req, res) => {
     GuardianContact,
     GuardianRelationship,
   } = req.body;
-  // console.log(req.body);
   db.query(
-    "update studentinfo set Student_name = '" +
-      name +
-      "',Class='" +
-      classes +
-      "',Age='" +
-      age +
-      "',B_form = '" +
-      bform +
-      "',Religion='" +
-      religion +
-      "',Nationality='" +
-      nationality +
-      "',DOB='" +
-      DOB +
-      "',POB='" +
-      POB +
-      "',Address='" +
-      address +
-      "',DOA='" +
-      DOA +
-      "',F_name='" +
-      FatherName +
-      "',F_contact='" +
-      FatherContact +
-      "',F_occupation='" +
-      FatherOccupation +
-      "',F_office_address='" +
-      FatherOfficeAddress +
-      "',F_nationality='" +
-      FatherNationality +
-      "',M_name='" +
-      MotherName +
-      "',M_contact='" +
-      MotherContact +
-      "',G_name='" +
-      GaudrianName +
-      "',G_contact='" +
-      GuardianContact +
-      "',G_relation='" +
-      GuardianRelationship +
-      "' where Student_id='" +
-      ID +
-      "' ",
+    "update studentinfo set Student_name = ?, Class = ?, Age = ?, B_form = ?, Religion = ?, Nationality = ?, DOB = ?, POB = ?, Address = ?, DOA = ?, F_name = ?, F_contact = ?, F_occupation = ?, F_office_address = ?, F_nationality = ?, M_name = ?, M_contact = ?, G_name = ?, G_contact = ?, G_relation = ? where Student_id = ?",
+    [
+      name,
+      classes,
+      age,
+      bform,
+      religion,
+      nationality,
+      DOB,
+      POB,
+      address,
+      DOA,
+      FatherName,
+      FatherContact,
+      FatherOccupation,
+      FatherOfficeAddress,
+      FatherNationality,
+      MotherName,
+      MotherContact,
+      GaudrianName,
+      GuardianContact,
+      GuardianRelationship,
+      ID,
+    ],
     (err) => {
       if (err) {
         // console.log(err);
@@ -171,27 +150,19 @@ router.put(`/updateFeeDetails`, async (req, res) => {
   } = req.body;
 
   db.query(
-    "update voucher set Anual_charge = '" +
-      Anual_charge +
-      "',Addmision_fee='" +
-      Addmision_fee +
-      "',Tution_fee='" +
-      Tution_fee +
-      "',Extra_fee = '" +
-      Extra_fee +
-      "',Lab_fee='" +
-      Lab_fee +
-      "',Exam_fee='" +
-      Exam_fee +
-      "',TotalAmount='" +
-      TotalAmount +
-      "',Feestatus='" +
-      Feestatus +
-      "',recievedBy='" +
-      recievedBy +
-      "' where Challan_number='" +
-      Challan_number +
-      "' ",
+    "update voucher set Anual_charge = ?, Addmision_fee = ?, Tution_fee = ?, Extra_fee = ?, Lab_fee = ?, Exam_fee = ?, TotalAmount = ?, Feestatus = ?, recievedBy = ? where Challan_number = ?",
+    [
+      Anual_charge,
+      Addmision_fee,
+      Tution_fee,
+      Extra_fee,
+      Lab_fee,
+      Exam_fee,
+      TotalAmount,
+      Feestatus,
+      recievedBy,
+      Challan_number,
+    ],
     (err) => {
       if (err) {
         return res

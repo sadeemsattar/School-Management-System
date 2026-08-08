@@ -1,7 +1,7 @@
 {
-  "name": "eshop",
+  "name": "school-management-backend",
   "version": "1.0.0",
-  "description": "backend",
+  "description": "Express + MySQL backend for the School Management System",
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",

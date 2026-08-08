@@ -35,7 +35,7 @@ router.post(`/login`, async (req, res) => {
               name: req.body.name,
               isAdmin: req.body.isAdmin,
             },
-            process.env.secret,
+            process.env.JWT_SECRET,
             {}
           );
 

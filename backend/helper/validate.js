@@ -10,7 +10,7 @@ const validateToken = (req, res, next) => {
   }
 
   try {
-    const validToken = verify(accessToken, process.env.secret);
+    const validToken = verify(accessToken, process.env.JWT_SECRET);
     if (validToken) {
       req.name = validToken.name;
       req.isAdmin = validToken.isAdmin;
@@ -28,7 +28,7 @@ const verifyAdmin = (req, res, next) => {
     // console.log(req.admin, req);
     return next();
   } else {
-    res.status(400).json({ status: "Falied", message: "Access Is Restricted" });
+    res.status(403).json({ status: "Failed", message: "Access Is Restricted" });
   }
 };
 module.exports = { verifyAdmin, validateToken };
