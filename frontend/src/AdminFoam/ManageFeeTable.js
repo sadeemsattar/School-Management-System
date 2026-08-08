@@ -4,6 +4,7 @@ import { Paper, Typography } from "@material-ui/core";
 import { useState, useEffect } from "react";
 import MaterialTable from "material-table";
 import axios from "axios";
+import API_BASE_URL from "../apiConfig";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const useStyles = makeStyles((theme) => ({
@@ -27,7 +28,7 @@ export default function ManageFeeTable(props) {
   const [tableData, setData] = useState([]);
   const getData = async () => {
     const response = await axios.get(
-      "http://localhost:5000/api/v1/admin/getFeeDetails",
+      `${API_BASE_URL}/admin/getFeeDetails`,
       {
         withCredentials: true,
       }
@@ -115,7 +116,7 @@ export default function ManageFeeTable(props) {
                 Feestatus = 1;
               }
               axios.put(
-                "http://localhost:5000/api/v1/admin/updateFeeDetails",
+                `${API_BASE_URL}/admin/updateFeeDetails`,
                 {
                   Challan_number: oldValueRow.Challan_number,
                   Student_id: oldValueRow.Challan_number,

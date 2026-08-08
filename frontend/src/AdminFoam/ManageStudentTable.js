@@ -4,6 +4,7 @@ import { Paper, Typography } from "@material-ui/core";
 import { useState, useEffect } from "react";
 import MaterialTable from "material-table";
 import axios from "axios";
+import API_BASE_URL from "../apiConfig";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const useStyles = makeStyles((theme) => ({
@@ -28,7 +29,7 @@ export default function ManageStudentTable(props) {
   const [tableData, setData] = useState([]);
   const getData = async () => {
     const response = await axios.get(
-      "http://localhost:5000/api/v1/admin/getStudent",
+      `${API_BASE_URL}/admin/getStudent`,
       {
         withCredentials: true,
       }
@@ -53,37 +54,13 @@ export default function ManageStudentTable(props) {
           addRowPosition: "first",
         }}
         editable={{
-          //   onRowAdd: (newRow) =>
-          //     new Promise((resolve, reject) => {
-          //       // const updateRows = [...tableData, newRow];
-          //       const response = axios.post(
-          //         "http://localhost:5000/admin/addhr",
-          //         {
-          //           firstName: newRow.FIRST_NAME,
-          //           lastName: newRow.LAST_NAME,
-          //           email: newRow.EMAIL,
-          //           phoneNumber: newRow.PHONE_NUMBER,
-          //           dob: newRow.DOB,
-          //           hireDate: newRow.HIRE_DATE,
-          //           address: newRow.ADDRESS,
-          //           cnic: newRow.CNIC,
-          //         },
-          //         { withCredentials: true }
-          //       );
-          //       setTimeout(() => {
-          //         //setData(updateRows);
-          //         getData();
-          //         resolve();
-          //         showMessage("Add");
-          //       }, 3000);
-          //     }),
           onRowUpdate: (newValueRow, oldValueRow) =>
             new Promise((resolve, reject) => {
               // const rowIndex = oldValueRow.tableData.id;
               // const updateRows = [...tableData];
               // updateRows[rowIndex] = newValueRow;
               axios.put(
-                "http://localhost:5000/api/v1/admin/updateStudent",
+                `${API_BASE_URL}/admin/updateStudent`,
                 {
                   name: newValueRow.Student_name,
                   ID: oldValueRow.Student_id,
@@ -118,23 +95,6 @@ export default function ManageStudentTable(props) {
                 showMessage("Update");
               }, 3000);
             }),
-
-          //   onRowDelete: (selectedRow) =>
-          //     new Promise((resolve, reject) => {
-          //       // const rowIndex = selectedRow.tableData.id;
-          //       // const updateRows = [...tableData];
-          //       // updateRows.splice(rowIndex, 1);
-          //       axios.delete("http://localhost:5000/admin/addhr", {
-          //         data: { hrId: selectedRow.HR_ID },
-          //         withCredentials: true,
-          //       });
-          //       setTimeout(() => {
-          //         // setData(updateRows);
-          //         getData();
-          //         resolve();
-          //         showMessage("Delete");
-          //       }, 3000);
-          //     }),
         }}
       />
       <ToastContainer position="top-right" autoClose={3000} />

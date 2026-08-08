@@ -1,6 +1,7 @@
 import "../foam.css";
 import React, { useState } from "react";
 import axios from "axios";
+import API_BASE_URL from "../apiConfig";
 import { Paper, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 const useStyles = makeStyles((theme) => ({
@@ -39,7 +40,7 @@ export default function AddStudent() {
   const addStudentInfo = async (e) => {
     try {
       await axios.post(
-        "http://localhost:5000/api/v1/admin/addStudentInfo",
+        `${API_BASE_URL}/admin/addStudentInfo`,
         {
           name: name,
           classes: classes,

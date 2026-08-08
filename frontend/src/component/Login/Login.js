@@ -1,6 +1,7 @@
 import "../../foam.css";
 import React, { useState } from "react";
 import axios from "axios";
+import API_BASE_URL from "../../apiConfig";
 import { Paper, Typography } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
 
@@ -10,13 +11,10 @@ export default function Login() {
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
 
-  const Signin = async (e) => {
-    // e.preventDefault();
-    // console.log(Username, Userpassword);
-
+  const Signin = async () => {
     try {
       await axios.post(
-        "http://localhost:5000/api/v1/login",
+        `${API_BASE_URL}/login`,
         {
           name: Username,
           password: Userpassword,
@@ -26,9 +24,10 @@ export default function Login() {
       );
       navigate("/admin");
     } catch (err) {
-      if (err.response === 401);
-      {
+      if (err.response && err.response.status === 401) {
         setMsg("Credentials not found. Please try again");
+      } else {
+        setMsg("Login failed. Please try again");
       }
     }
   };

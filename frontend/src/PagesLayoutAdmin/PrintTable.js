@@ -4,6 +4,7 @@ import { ComponentToPrint } from "./Print";
 import { useRef, useState } from "react";
 import { makeStyles } from "@material-ui/styles";
 import axios from "axios";
+import API_BASE_URL from "../apiConfig";
 import { Paper } from "@material-ui/core";
 // import "../foam.css";
 const useStyles = makeStyles((theme) => ({
@@ -44,7 +45,7 @@ export default function PrintTable() {
 
   const getDetails = async () => {
     const response = await axios.post(
-      "http://localhost:5000/api/v1/admin/getFeeDetailsByClass",
+      `${API_BASE_URL}/admin/getFeeDetailsByClass`,
       { Class: classes, Date: date },
       {
         withCredentials: true,
